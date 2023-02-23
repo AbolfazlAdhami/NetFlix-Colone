@@ -1,76 +1,78 @@
 .navbar {
-        width: 100%;
-        height: 4rem;
-        background: linear-gradient(to top, transparent 0%, rgb(0, 0, 0, 0.3) 50%);
-        color: #ffffff;
-        position: fixed;
-        top: 0;
-        z-index: 1000;
-        &.scrolled {
-                background-color: var(--main-color);
-        }
-        .container {
-                width: 100%;
-                height: 100%;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding: 0 2.5rem;
-                .right {
-                        display: flex;
-                        align-items: center;
-                        span {
-                                margin-right: 2rem;
-                                font-size: 1rem;
-                                cursor: pointer;
-                        }
+  width: 100%;
+  height: 4rem;
+  background: linear-gradient(to top, transparent 0%, rgb(0, 0, 0, 0.3) 50%);
+  color: #ffffff;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  transition: all ease-in 0.3s;
+  &.scrolled {
+    background-color: var(--main-color);
+    transition: all ease-in 0.3s;
+  }
+  .container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2.5rem;
+    .right {
+      display: flex;
+      align-items: center;
+      span {
+        margin-right: 2rem;
+        font-size: 1rem;
+        cursor: pointer;
+      }
 
-                        img {
-                                height: 2.5rem;
-                                margin-right: 4rem;
-                        }
-                }
-                .left {
-                        display: flex;
-                        align-items: center;
-                        .profile {
-                                padding: 0 1rem;
-                                display: flex;
-                                position: relative;
-                                align-items: center;
-                                img {
-                                        width: 3rem;
-                                        height: 3rem;
-                                        object-fit: cover;
-                                        border-radius: 0.5rem;
-                                        cursor: pointer;
-                                }
-                                .option {
-                                        display: none;
-                                        border-radius: 0.5rem;
-                                        padding: 1rem;
-                                }
-                                span {
-                                        font-size: 1rem;
-                                }
-                                &:hover {
-                                        .option {
-                                                display: flex;
-                                                flex-direction: column;
-                                                background-color: var(--main-color);
-                                                position: absolute;
-                                                top: 110%;
-                                                transform: translateX(50%);
-                                        }
-                                        .icon {
-                                                transform: translateY(-10%);
-                                        }
-                                }
-                        }
-                        .icon {
-                                margin: 0 1rem;
-                                cursor: pointer;
-                        }
-                }
+      img {
+        height: 2.5rem;
+        margin-right: 4rem;
+      }
+    }
+    .left {
+      display: flex;
+      align-items: center;
+      .profile {
+        padding: 0 1rem;
+        display: flex;
+        position: relative;
+        align-items: center;
+        img {
+          width: 3rem;
+          height: 3rem;
+          object-fit: cover;
+          border-radius: 0.5rem;
+          cursor: pointer;
         }
+        .option {
+          display: none;
+          border-radius: 0.5rem;
+          padding: 1rem;
+        }
+        span {
+          font-size: 1rem;
+        }
+        &:hover {
+          .option {
+            display: flex;
+            flex-direction: column;
+            background-color: var(--main-color);
+            position: absolute;
+            top: 110%;
+            transform: translateX(50%);
+          }
+          .icon {
+            transform: translateY(-10%);
+          }
+        }
+      }
+      .icon {
+        margin: 0 1rem;
+        cursor: pointer;
+      }
+    }
+  }
 }

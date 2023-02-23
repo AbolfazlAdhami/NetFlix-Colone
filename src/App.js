@@ -4,7 +4,7 @@ import "./index.scss";
 import Netflix from "./Netflix";
 
 function App() {
-        return <Netflix />;
+  return <Netflix />;
 }
 
 export default App;

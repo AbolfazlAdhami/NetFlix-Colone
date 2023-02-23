@@ -10,10 +10,12 @@ const List = () => {
 
   const movemnetHandler = (direction) => {
     let postion = refList.current.getBoundingClientRect().x;
-
+    console.log(refList.current.getBoundingClientRect());
     if (direction == "back" && postion > -2550) {
+      console.log(postion);
       refList.current.style.transform = `translateX(${postion - 75}px)`;
-    } else if (direction == "forward" && postion < 0) {
+    }
+    if (direction == "forward" && postion < 0) {
       refList.current.style.transform = `translateX(${postion + 75}px)`;
     }
   };
@@ -25,7 +27,7 @@ const List = () => {
         <div className="wrapper">
           <ArrowBackIosIcon className="sliderBTN back" onClick={() => movemnetHandler("back")} />
           <div className="container" ref={refList}>
-            {Array(15)
+            {Array(5)
               .fill("")
               .map((x, index) => (
                 <ListItems key={index} index={index} />
