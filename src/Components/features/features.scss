@@ -2,80 +2,48 @@
   width: 100%;
   height: 90vh;
   position: relative;
-  object-fit: cover;
-  .category {
-    position: absolute;
-    top: 20%;
-    left: 15%;
-    font-size: 2rem;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    font-weight: 600;
-    color: #f5f6fa;
-
-    select {
-      background-color: var(--main-color);
-      color: #f5f6fa;
-      padding: 0 0.1rem;
-      margin-left: 1rem;
-      padding: 0.2rem;
-      font-weight: 500;
-      border: 0.1rem solid #f5f6fa;
-      cursor: pointer;
-      outline: none;
-
-      option {
-        outline: none;
-      }
-    }
-  }
-  img {
+  .poster {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center top;
   }
-  .info {
-    width: 35%;
+  .email-box {
     position: absolute;
-    left: 5%;
-    bottom: 15%;
+    width: 40rem;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    color: #f5f6fa;
-    img {
-      width: 95%;
+    background-color: var(--main-color);
+    top: 50%;
+    right: 15%;
+    background-color: var(--main-color);
+    padding: 0.2rem;
+    border-radius: 0.3rem;
+    .email {
+      padding: 0.75rem 0.5rem;
+      width: 80%;
+      margin-right: 0.5rem;
+      border-radius: 0.3rem;
+      background-color: transparent;
+      border: none;
+      outline: none;
+      color: var(--font-color);
+      font-size: 1.8rem;
+      &::placeholder {
+        color: var(--font-color-2);
+      }
     }
-    .desc {
-      font-size: 0.8rem;
-      font-weight: 700;
-      margin: 1.5rem 0;
-    }
-    .buttons {
-      align-self: flex-start;
-      display: flex;
-      align-items: center;
-
-      button {
-        padding: 0.5rem 0.75rem;
-        margin-right: 0.5rem;
-        display: flex;
-        align-items: center;
-        font-size: 1rem;
-        border-radius: 0.3rem;
-        border: none;
-        cursor: pointer;
-        &.play {
-          background-color: #f5f6fa(--main-color);
-          color: var(--main-color);
-        }
-        &.more {
-          color: #f5f6fa;
-          background-color: #57606f;
-        }
+    .btn {
+      padding: 0.75rem 0.5rem;
+      border-radius: 0.3rem;
+      border: none;
+      outline: none;
+      background-color: var(--font-color-2);
+      font-size: 1.8rem;
+      color: var(--font-color);
+      cursor: pointer;
+      transition: all ease 0.5s;
+      &:hover {
+        background-color: var(--shadow-color);
       }
     }
   }

@@ -1,12 +1,16 @@
 .navbar {
   width: 100%;
-  height: 4rem;
+  height: 6rem;
   background: linear-gradient(to top, transparent 0%, rgb(0, 0, 0, 0.3) 50%);
-  color: #ffffff;
+  color: var(--font-color);
   position: fixed;
   top: 0;
   z-index: 1000;
   transition: all ease-in 0.3s;
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
   &.scrolled {
     background-color: var(--main-color);
     transition: all ease-in 0.3s;
@@ -17,61 +21,55 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 2.5rem;
-    .right {
-      display: flex;
-      align-items: center;
-      span {
-        margin-right: 2rem;
-        font-size: 1rem;
-        cursor: pointer;
-      }
-
+    padding: 0 1.5rem;
+    .logo {
       img {
-        height: 2.5rem;
+        height: 4rem;
         margin-right: 4rem;
       }
     }
-    .left {
+    .menu {
       display: flex;
       align-items: center;
-      .profile {
-        padding: 0 1rem;
-        display: flex;
-        position: relative;
-        align-items: center;
-        img {
-          width: 3rem;
-          height: 3rem;
-          object-fit: cover;
-          border-radius: 0.5rem;
-          cursor: pointer;
-        }
-        .option {
-          display: none;
-          border-radius: 0.5rem;
-          padding: 1rem;
-        }
-        span {
-          font-size: 1rem;
-        }
+      flex-direction: row;
+      justify-content: flex-start;
+      span {
+        margin-right: 3rem;
+        font-size: 2rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all linear 0.3sF;
         &:hover {
-          .option {
-            display: flex;
-            flex-direction: column;
-            background-color: var(--main-color);
-            position: absolute;
-            top: 110%;
-            transform: translateX(50%);
-          }
-          .icon {
-            transform: translateY(-10%);
-          }
+          text-shadow: 0.1rem 0.1rem 2rem var(--font-color);
+          color: var(--font-color-2);
         }
       }
-      .icon {
-        margin: 0 1rem;
+    }
+    .user {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      .auth {
+        display: flex;
+        background-color: var(--font-color-2);
+        justify-content: center;
+        align-items: center;
+        border-radius: 0.5rem;
         cursor: pointer;
+        padding: 0.5rem;
+        font-size: 1.8rem;
+        font-weight: 500;
+        color: var(--main-color);
+        transition: all ease-in-out 0.3s;
+        .auth-icon {
+          font-size: 2rem;
+          margin-left: 0.1rem;
+        }
+        &:hover {
+          background-color: var(--shadow-color);
+          transition: all ease-in-out 0.3s;
+          color: var(--font-color);
+        }
       }
     }
   }

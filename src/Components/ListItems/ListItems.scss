@@ -1,12 +1,114 @@
 .listItems {
-        width: 15rem;
-        height: 15rem;
-        background-color: #fff;
-        margin-left: 1rem;
-        &.e {
-                background-color: blue;
+  width: 25rem;
+  height: 30rem;
+  background-color: var(--card-bg-color);
+  margin-left: 2rem;
+  border-radius: 0.3rem;
+  position: relative;
+  transition: cubic-bezier(0.215, 0.61, 0.355, 1) all 0.5s;
+  .info {
+    display: none;
+    overflow: hidden;
+  }
+  .like {
+    display: none;
+    overflow: hidden;
+  }
+  .more-btn {
+    display: none;
+    overflow: hidden;
+  }
+  .poster {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0.3rem;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 0.3rem;
+    }
+  }
+  &.change {
+    height: 50rem;
+    width: 40rem;
+    transition: cubic-bezier(0.215, 0.61, 0.355, 1) all 0.5s;
+    .poster {
+      width: 100%;
+      height: 60%;
+      border-radius: 0.3rem;
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 0.3rem;
+        object-fit: cover;
+        object-position: center top;
+      }
+    }
+    .more-btn {
+      display: block;
+      overflow: visible;
+      width: 80%;
+      margin: 0 auto;
+      padding: 0.5rem 0;
+      background-color: var(--font-color-2);
+      border-radius: 0.3rem;
+      border: none;
+      outline: none;
+      font-size: 1.8rem;
+      color: var(--font-color);
+      font-weight: 500;
+      cursor: pointer;
+      transition: all ease-in-out 0.3s;
+      &:hover {
+        background-color: var(--shadow-color);
+      }
+    }
+    .like {
+      display: block;
+      overflow: visible;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      height: 3rem;
+      background: linear-gradient(to bottom, rgb(0, 0, 0, 0.9) 0%, transparent 95%);
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 0.5rem 1.5rem;
+      .icon {
+        font-size: 3rem;
+        color: var(--font-color);
+        cursor: pointer;
+        transition: all ease-in 0.3s;
+        &:hover {
+          color: var(--font-color-2);
+          transition: all ease-in 0.3s;
         }
-        &.o {
-                background-color: red;
+      }
+    }
+    .info {
+      width: 100%;
+      display: block;
+      overflow: visible;
+      padding: 1rem 0.5rem;
+      h3 {
+        font-size: 1.8rem;
+        letter-spacing: 0.1rem;
+        color: var(--font-color);
+        padding: 0.25rem 0;
+        span {
+          color: var(--font-color-2);
         }
+        .gen {
+          display: inline;
+          color: var(--font-color);
+          flex-direction: row;
+          justify-content: flex-start;
+          padding-right: 0.2rem;
+        }
+      }
+    }
+  }
 }
