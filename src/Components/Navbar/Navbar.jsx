@@ -3,7 +3,7 @@ import Wrapper from "../../HOC/Wrapper";
 import LoginIcon from "@mui/icons-material/Login";
 import "./Navbar.scss";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 const NavBar = () => {
   const [isScroll, setIsScroll] = useState(false);
@@ -21,17 +21,19 @@ const NavBar = () => {
           </div>
           <div className="menu">
             {" "}
-            <NavLink to="home">
+            <NavLink to="home ">
               <span>HomePage</span>
             </NavLink>
             <span>Movies</span>
             <span>My List</span>
           </div>
           <div className="user">
-            <div className="auth">
-              Sing in
-              <LoginIcon className="auth-icon" />
-            </div>
+            <Link to="auth">
+              <div className="auth">
+                Sing in
+                <LoginIcon className="auth-icon" />
+              </div>
+            </Link>
             {/* <div className="account"></div> */}
           </div>
         </div>

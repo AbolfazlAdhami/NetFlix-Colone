@@ -3,6 +3,7 @@ import MainLayout from "./Container/Layout/MainLayout";
 import Home from "./Container/Home/Home";
 import { Route, Routes } from "react-router";
 import SinglePage from "./Container/SinglePage/SinglePage";
+import Auth from "./Container/Auth/Auth";
 
 class Netflix extends Component {
   state = {};
@@ -13,6 +14,7 @@ class Netflix extends Component {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="home" element={<Home />} />
+          <Route path="auth" element={<Auth />} />
           <Route path="singleMovie" element={<SinglePage />}>
             <Route path=":id" element={<SinglePage />} />
           </Route>

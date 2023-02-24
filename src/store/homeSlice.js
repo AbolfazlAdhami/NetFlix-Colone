@@ -7,9 +7,12 @@ export const moveiSlider = createAsyncThunk("movie/fetchMovie", async () => {
   const { data, status } = await axios.get(`https://moviesapi.ir/api/v1/genres/${gener}/movies?page=${page}`);
   if (status == 200) return data.data;
 });
+export const homeMovie = createAsyncThunk("movie/");
+
 let initialState = {
   gener: [],
   moveies: [],
+  home: [],
   status: "idle", //"succses" "loading" "idle" "faild"
   error: null,
 };
