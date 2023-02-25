@@ -12,15 +12,18 @@ import { updateAccount, userAction } from "../../store/userSlice";
 
 function ListItems({ movie }) {
   const navigate = useNavigate();
-  const [name, setName] = useState("");
+  // Redux state and dispatch
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state);
-  const [liked, setLiked] = useState(false);
   const { favoritList, login } = useSelector((state) => state.user);
+  // Reducers
+  // Global state in this page
+  const [name, setName] = useState("");
+  const [liked, setLiked] = useState(false);
+  // check for liked movie and change icon color and update list
   useEffect(() => {
     const liked = [...favoritList];
     const likeditem = liked.find((item) => item == movie.id);
-
     if (likeditem) {
       setLiked(true);
     } else {
@@ -28,10 +31,11 @@ function ListItems({ movie }) {
     }
     dispatch(updateAccount(user));
   }, [favoritList]);
+  // remove id of movie to list
   const removeList = () => {
     dispatch(userAction.removeItem(movie.id));
   };
-
+  // Add id of movie to list if user loged ing
   const addtoFavorite = () => {
     if (!login) {
       navigate("/auth");
@@ -48,12 +52,16 @@ function ListItems({ movie }) {
     }
     dispatch(userAction.addToList(movie.id));
   };
+  // Show info by change className Style
   const showInfo = () => {
     setName("change");
   };
+  // Show info by change className Style
+
   const hideInfo = () => {
     setName("");
   };
+  // navigate to single page and send id of movie
   const naviPage = () => {
     navigate(`/singleMovie/${movie.id}`);
   };

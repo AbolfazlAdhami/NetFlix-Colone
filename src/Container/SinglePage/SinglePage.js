@@ -11,7 +11,7 @@ import "./Single.scss";
 
 function SinglePage() {
   const { id } = useParams();
-
+  // const 
   const [movie, setMovie] = useState({});
   const [loading, setLoading] = useState(false);
   const fetchData = async () => {
