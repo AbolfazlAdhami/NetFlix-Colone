@@ -4,14 +4,24 @@ import LoginIcon from "@mui/icons-material/Login";
 import "./Navbar.scss";
 import { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const NavBar = () => {
   const [isScroll, setIsScroll] = useState(false);
+  const [login, setLogin] = useState(false);
+
   window.onscroll = () => {
     setIsScroll(window.pageYOffset === 0 ? false : true);
     return () => (window.onscroll = null);
   };
-
+  const { user } = useSelector((state) => state);
+ 
+  useEffect(() => {
+    if (user.login) {
+      setLogin(true);
+    }
+  }, [user]);
   return (
     <Wrapper>
       <div className={isScroll ? `navbar scrolled` : `navbar`}>
@@ -28,13 +38,18 @@ const NavBar = () => {
             <span>My List</span>
           </div>
           <div className="user">
-            <Link to="auth">
-              <div className="auth">
-                Sing in
-                <LoginIcon className="auth-icon" />
-              </div>
-            </Link>
-            {/* <div className="account"></div> */}
+            {!login ? (
+              <Link to="auth">
+                <div className="auth">
+                  Sing in
+                  <LoginIcon className="auth-icon" />
+                </div>
+              </Link>
+            ) : (
+              <Link>
+                <div className="account">{user.info.name}</div>
+              </Link>
+            )}
           </div>
         </div>
       </div>

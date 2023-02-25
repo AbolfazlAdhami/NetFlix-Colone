@@ -1,11 +1,14 @@
-import React, { useState } from "react";
-import { useParams } from "react-router";
-import "./Single.scss";
+import React, { useState, useEffect } from "react";
 import Wrapper from "../../HOC/Wrapper";
-import { useEffect } from "react";
+import { useParams } from "react-router";
 import axios from "axios";
-
 import { ThreeCircles } from "react-loader-spinner";
+import Info from "../../Components/InfoCard/Info";
+import ShareIcon from "@mui/icons-material/Share";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import "./Single.scss";
+
 function SinglePage() {
   const { id } = useParams();
 
@@ -40,47 +43,11 @@ function SinglePage() {
   const Content = (
     <React.Fragment>
       <div className="info">
-        <div className="desc">
-          <h3>
-            <span>Title: </span> {movie.title}
-          </h3>
-          <h3>
-            <span>Type: </span> {movie.type}
-          </h3>
-          <h3>
-            <span>Year: </span> {movie.year}
-          </h3>
-          <h3>
-            <span>Released Date: </span> {movie.released}
-          </h3>
-          <h3>
-            <span>Runtime: </span> {movie.runtime}
-          </h3>
-          <h3>
-            <span>Director: </span> {movie.director}
-          </h3>
-          <h3>
-            <span>writer: </span> {movie.writer}{" "}
-          </h3>
-          <h3>
-            <span>Actors: </span> {movie.actors}{" "}
-          </h3>
-          <h3>
-            <span>Awards: </span> {movie.awards}{" "}
-          </h3>
-          <h3>
-            <span>IMDB Rating: </span> {movie.imdb_rating}{" "}
-          </h3>
-          <h3>
-            <span>metascore: </span> {movie.metascore}{" "}
-          </h3>
-
-          <h3>
-            <span>synopsis: </span> {movie.plot}{" "}
-          </h3>
-          <button className="btn-add">Add to Your List</button>
-        </div>
+        <Info movie={movie} />
         <div className="poster">
+          <div className="btn-icons">
+            <FavoriteBorderIcon />
+          </div>
           <img src={movie.poster} />
         </div>
       </div>

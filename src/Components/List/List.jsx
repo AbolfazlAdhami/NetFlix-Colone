@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 const List = () => {
   const dispatch = useDispatch();
   const refList = useRef(null);
-  const { status, moveies } = useSelector((state) => state);
+  const { status, moveies } = useSelector((state) => state.home);
 
   // Movment function
   const movemnetHandler = (direction) => {

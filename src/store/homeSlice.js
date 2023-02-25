@@ -4,7 +4,7 @@ import axios from "axios";
 export const moveiSlider = createAsyncThunk("movie/fetchMovie", async () => {
   let page = Math.trunc(Math.random() * 5);
   let gener = Math.trunc(Math.random() * 10);
-  const { data, status } = await axios.get(`https://moviesapi.ir/api/v1/genres/${gener}/movies?page=${page}`);
+  const { data, status } = await axios.get(`https://moviesapi.ir/api/v1/genres/4/movies?page=1`);
   if (status == 200) return data.data;
 });
 export const homeMovie = createAsyncThunk("movie/");

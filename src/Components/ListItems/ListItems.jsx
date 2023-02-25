@@ -1,15 +1,53 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Wrapper from "../../HOC/Wrapper";
 import ShareIcon from "@mui/icons-material/Share";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-
+import { toast } from "react-toastify";
 import "./ListItems.scss";
+
 import { useNavigate } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { updateAccount, userAction } from "../../store/userSlice";
+
 function ListItems({ movie }) {
   const navigate = useNavigate();
   const [name, setName] = useState("");
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state);
+  const [liked, setLiked] = useState(false);
+  const { favoritList, login } = useSelector((state) => state.user);
+  useEffect(() => {
+    const liked = [...favoritList];
+    const likeditem = liked.find((item) => item == movie.id);
 
+    if (likeditem) {
+      setLiked(true);
+    } else {
+      setLiked(false);
+    }
+    dispatch(updateAccount(user));
+  }, [favoritList]);
+  const removeList = () => {
+    dispatch(userAction.removeItem(movie.id));
+  };
+
+  const addtoFavorite = () => {
+    if (!login) {
+      navigate("/auth");
+      toast.info("You should login Frist", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    }
+    dispatch(userAction.addToList(movie.id));
+  };
   const showInfo = () => {
     setName("change");
   };
@@ -17,7 +55,6 @@ function ListItems({ movie }) {
     setName("");
   };
   const naviPage = () => {
-    console.log(movie);
     navigate(`/singleMovie/${movie.id}`);
   };
   return (
@@ -25,7 +62,7 @@ function ListItems({ movie }) {
       <div className={`listItems ${name}`} onMouseEnter={showInfo} onMouseLeave={hideInfo}>
         <div className="like">
           <ShareIcon className="icon" />
-          <FavoriteBorderIcon className="icon" />
+          {!liked ? <FavoriteBorderIcon className="icon" onClick={addtoFavorite} /> : <FavoriteIcon className="icon liked" onClick={removeList} />}
         </div>
         <div className="poster">
           <img src={movie.poster} alt="" />

@@ -86,6 +86,9 @@
           color: var(--font-color-2);
           transition: all ease-in 0.3s;
         }
+        &.liked {
+          color: var(--font-color-2);
+        }
       }
     }
     .info {

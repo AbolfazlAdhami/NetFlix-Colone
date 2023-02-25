@@ -39,10 +39,16 @@
       height: 50rem;
       object-fit: cover;
       border-radius: 0.3rem;
+      position: relative;
       img {
         border-radius: 0.3rem;
         width: 100%;
         height: 100%;
+      }
+      .btn-icons {
+        widows: 100%;
+        position: absolute;
+        height: 3rem;
       }
     }
   }

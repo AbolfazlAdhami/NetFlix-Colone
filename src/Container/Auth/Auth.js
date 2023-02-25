@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useRef } from "react";
 import { useEffect } from "react";
 import { createAccount } from "../../store/userSlice";
+import { toast } from "react-toastify";
 function Auth() {
   const dispatch = useDispatch();
   const btn_switcher = useRef(null);
@@ -15,14 +16,26 @@ function Auth() {
     setform(name);
   };
   const { user } = useSelector((state) => state);
-  const { login } = useSelector((state) => state.user);
- 
+  const { login, error } = useSelector((state) => state.user);
+
   useEffect(() => {
     if (login) {
       switcherHandler("login");
       dispatch(createAccount(user));
+    } else if (error == "warning") {
+      switcherHandler("singin");
+      toast.info("You already have any account", {
+        position: "center-top",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
     }
-  }, [login]);
+  }, [user]);
 
   return (
     <div className="auth-container">

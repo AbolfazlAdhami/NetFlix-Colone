@@ -7,8 +7,8 @@ import "./Home.scss";
 import { useSelector } from "react-redux";
 import Loader from "../../Components/Loader/Loader";
 const Home = () => {
-  const { status } = useSelector((state) => state);
-
+  const { status } = useSelector((state) => state.home);
+  console.log(status);
   return (
     <Wrapper>
       <Features />

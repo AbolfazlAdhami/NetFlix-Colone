@@ -11,14 +11,9 @@ const initialState = {
     password: "",
     id: null,
   },
+  error: null,
 };
-export const loginUser = createAsyncThunk("user/login", async (userName) => {
-  const { status, data } = await axios.get(`https://netflix-colon-b71d8-default-rtdb.firebaseio.com/${userName}.json`);
-  console.log(initialState);
-  if (status == 200) {
-    return true;
-  }
-});
+
 export const updateAccount = createAsyncThunk("user/create", async (user) => {
   const userName = user.info.name;
   const res = await axios.put(`https://netflix-colon-b71d8-default-rtdb.firebaseio.com/${userName}.json`, user);
@@ -38,24 +33,44 @@ export const singInUser = createAsyncThunk("user/singin", async (user) => {
 const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    addToList(state, action) {
+      const pervList = [...state.favoritList];
+      const id = action.payload;
+      console.log(pervList);
+      const checkId = pervList.find((item) => item == id);
+      console.log(checkId, id);
+      if (checkId == null) state.favoritList.push(id);
+    },
+    removeItem(state, action) {
+      const pervList = [...state.favoritList];
+      const id = action.payload;
+      const newList = pervList.filter((item) => item != id);
+      console.log(newList);
+      state.favoritList = newList;
+    },
+    loginUser(state, action) {
+      const tokenkey = crypto.randomUUID();
+      state.error = null;
+      state.info = action.payload.info;
+      state.login = true;
+      state.token = tokenkey;
+    },
+    userNotFound(state, action) {
+      state.login = false;
+      state.error = "warning";
+    },
+  },
 
   extraReducers(builder) {
-    builder
-      .addCase(singInUser.fulfilled, (state, action) => {
-        const user = action.payload;
-        state.info.name = user.name;
-        state.info.email = user.email;
-        state.info.password = user.password;
-        state.info.id = user.id;
-        state.login = true;
-      })
-      .addCase(loginUser.fulfilled, (state, action) => {
-        const tokenKey = crypto.randomUUID();
-        console.log(tokenKey);
-        state.login = true;
-        state.token = tokenKey;
-      });
+    builder.addCase(singInUser.fulfilled, (state, action) => {
+      const user = action.payload;
+      state.info.name = user.name;
+      state.info.email = user.email;
+      state.info.password = user.password;
+      state.info.id = user.id;
+      state.login = true;
+    });
   },
 });
 export const userAction = userSlice.actions;
