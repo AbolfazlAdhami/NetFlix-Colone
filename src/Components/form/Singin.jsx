@@ -1,18 +1,24 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { singInUser } from "../../store/userSlice";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { object, string } from "yup";
-import { ToastContainer, toast } from "react-toastify";
+import { singInUser, createUser } from "../../store/userSlice";
+// UI & UX Imported func and component
+import { toast } from "react-toastify";
 import { ThreeDots } from "react-loader-spinner";
-
 import "./Singin.scss";
+
+// UI & UX Imported func and component
+
 const Singin = () => {
   const [email, setEmail] = useState("");
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [loader, setLoader] = useState(false);
   const dispatch = useDispatch();
+  const { user } = useSelector((state) => state);
+  const { status, create } = useSelector((state) => state.user);
 
+  // Validation User on Schema
   const validation = async (obj) => {
     let userSchema = object({
       name: string().required("This field must be filled"),
@@ -23,11 +29,30 @@ const Singin = () => {
       await userSchema.validate(obj, { abortEarly: false });
     } catch (error) {
       console.log(error.errors);
-      setLoader(false);
       return error.errors;
     }
   };
-
+  // Validation User on Schema
+  const createAccount = () => {
+    dispatch(createUser(user));
+    setEmail("");
+    setUserName("");
+    setPassword("");
+    setLoader(false);
+    toast.success("User Successfuly Created", {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
+  useEffect(() => {
+    if (status == "singin" && !create) createAccount();
+  }, [status]);
   const regesterUser = async () => {
     setLoader(true);
     const user = {
@@ -35,14 +60,10 @@ const Singin = () => {
       email: email,
       password: password,
     };
-
     const validate = await validation(user);
 
     if (validate == null) {
       dispatch(singInUser(user));
-      setEmail("");
-      setUserName("");
-      setPassword("");
       toast.success("User Successfuly Regestered", {
         position: "bottom-right",
         autoClose: 5000,
@@ -53,7 +74,6 @@ const Singin = () => {
         progress: undefined,
         theme: "dark",
       });
-      setLoader(true);
       return;
     }
     validate.map((m) => {

@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Wrapper from "../../HOC/Wrapper";
+import { useNavigate } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { addMovie, removeMovie } from "../../store/userSlice";
+// UI & UX Imported func and component
+
 import ShareIcon from "@mui/icons-material/Share";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { toast } from "react-toastify";
 import "./ListItems.scss";
-
-import { useNavigate } from "react-router";
-import { useDispatch, useSelector } from "react-redux";
-import { updateAccount, userAction } from "../../store/userSlice";
+// UI & UX Imported func and component
 
 function ListItems({ movie }) {
   const navigate = useNavigate();
@@ -21,19 +23,28 @@ function ListItems({ movie }) {
   const [name, setName] = useState("");
   const [liked, setLiked] = useState(false);
   // check for liked movie and change icon color and update list
+
   useEffect(() => {
-    const liked = [...favoritList];
-    const likeditem = liked.find((item) => item == movie.id);
-    if (likeditem) {
+    const likedList = [...favoritList];
+    const likedMovie = likedList.findIndex((item) => item == movie.id);
+    if (likedMovie != -1) {
       setLiked(true);
-    } else {
-      setLiked(false);
     }
-    dispatch(updateAccount(user));
-  }, [favoritList]);
+  }, [user]);
   // remove id of movie to list
   const removeList = () => {
-    dispatch(userAction.removeItem(movie.id));
+    dispatch(removeMovie(movie.id));
+    setLiked(false);
+    toast.info(`${movie.title} Remove to Your List`, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
   };
   // Add id of movie to list if user loged ing
   const addtoFavorite = () => {
@@ -49,8 +60,19 @@ function ListItems({ movie }) {
         progress: undefined,
         theme: "dark",
       });
+      return;
     }
-    dispatch(userAction.addToList(movie.id));
+    dispatch(addMovie(movie.id));
+    toast.info(`${movie.title} Add to Your List`, {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
   };
   // Show info by change className Style
   const showInfo = () => {

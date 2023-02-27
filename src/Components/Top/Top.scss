@@ -1,0 +1,110 @@
+.top {
+  width: 100%;
+  height: 5rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 2rem;
+
+  .genre {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 40%;
+    height: 80%;
+    z-index: 50;
+    .genre-name {
+      width: 100%;
+      height: 100%;
+      color: var(--font-color-2);
+      font-size: 1.8rem;
+      line-height: 1rem;
+      outline: none;
+      border: none;
+      border-bottom: 0.2rem solid var(--font-color-2);
+      background-color: var(--card-bg-color);
+      border-radius: 0.5rem;
+    }
+  }
+  .search {
+    width: 50%;
+    height: 80%;
+    background-color: var(--card-bg-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-radius: 0.5rem;
+
+    .search-box {
+      width: 100%;
+      height: 100%;
+      background-color: var(--card-bg-color);
+      outline: none;
+      border: none;
+      border-radius: 0.5rem;
+      padding: 0 1rem;
+      color: var(--font-color);
+      font-size: 1.8rem;
+      transition: all ease 0.3s;
+      &::placeholder {
+        color: var(--font-color-2);
+      }
+    }
+    .search-btn {
+      position: absolute;
+      height: 100%;
+      padding: 0 1rem;
+      right: 2%;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: transparent;
+      text-align: center;
+      border: none;
+      outline: none;
+      transition: all ease 0.3s;
+      cursor: pointer;
+      &:hover {
+        .search-icon {
+          color: var(--font-color);
+        }
+      }
+      .search-icon {
+        color: var(--font-color-2);
+        transition: all ease 0.3s;
+        font-size: 2.5rem;
+      }
+    }
+  }
+}
+.paggination {
+  width: 100%;
+  height: 3rem;
+  margin-top: 2rem;
+  padding: 0 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .page {
+    background-color: var(--font-color-2);
+    padding: 1rem 1.5rem;
+    border-radius: 50%;
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: var(--font-color);
+    border: none;
+    outline: none;
+    margin: 0 1rem;
+    cursor: pointer;
+    transition: all linear 0.35s;
+    &:hover {
+      background-color: var(--shadow-color);
+    }
+
+    &.actived {
+      background-color: var(--font-color);
+      color: var(--font-color-2);
+    }
+  }
+}

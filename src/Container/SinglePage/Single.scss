@@ -46,10 +46,28 @@
         height: 100%;
       }
       .btn-icons {
-        widows: 100%;
-        position: absolute;
+        width: 100%;
         height: 3rem;
+        top: 0;
+        padding: 0.5rem 1.5rem;
+        position: absolute;
         display: flex;
+        .icon {
+          font-size: 2.5rem;
+          color: var(--font-color);
+          transition: all 0.5s ease-in;
+          cursor: pointer;
+          &:hover {
+            transition: all 0.5s ease-in;
+            color: var(--font-color-2);
+            transform: scale(1.1);
+          }
+          &.liked {
+            color: var(--font-color-2);
+            transition: all 0.5s ease-in;
+            transform: scale(1.25);
+          }
+        }
       }
     }
   }

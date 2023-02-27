@@ -10,15 +10,16 @@ import { useEffect } from "react";
 const NavBar = () => {
   const [isScroll, setIsScroll] = useState(false);
   const [login, setLogin] = useState(false);
-
+  const [userName, setUserName] = useState("");
   window.onscroll = () => {
     setIsScroll(window.pageYOffset === 0 ? false : true);
     return () => (window.onscroll = null);
   };
   const { user } = useSelector((state) => state);
- 
+
   useEffect(() => {
     if (user.login) {
+      setUserName(user.userName);
       setLogin(true);
     }
   }, [user]);
@@ -34,8 +35,12 @@ const NavBar = () => {
             <NavLink to="home ">
               <span>HomePage</span>
             </NavLink>
-            <span>Movies</span>
-            <span>My List</span>
+            <NavLink to={"movies"}>
+              <span>Movies</span>
+            </NavLink>
+            <NavLink to="user">
+              <span>My List</span>
+            </NavLink>
           </div>
           <div className="user">
             {!login ? (
@@ -46,9 +51,9 @@ const NavBar = () => {
                 </div>
               </Link>
             ) : (
-              <Link>
-                <div className="account">{user.info.name}</div>
-              </Link>
+              <NavLink to="user">
+                <div className="account">{userName}</div>
+              </NavLink>
             )}
           </div>
         </div>

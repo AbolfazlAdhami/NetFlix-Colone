@@ -1,13 +1,13 @@
-import React from "react";
-import "./Auth.scss";
-import { useState } from "react";
-import Singin from "../../Components/form/Singin";
-import Login from "../../Components/form/Loging";
+import React, { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useRef } from "react";
-import { useEffect } from "react";
-import { createAccount } from "../../store/userSlice";
+
+import Login from "../../Components/form/Loging";
+import Singin from "../../Components/form/Singin";
+// UI & UX Imported func and component
 import { toast } from "react-toastify";
+import "./Auth.scss";
+// UI & UX Imported func and component
+
 function Auth() {
   const dispatch = useDispatch();
   const btn_switcher = useRef(null);
@@ -16,27 +16,14 @@ function Auth() {
     setform(name);
   };
   const { user } = useSelector((state) => state);
-  const { login, error } = useSelector((state) => state.user);
+  const { status, create } = useSelector((state) => state.user);
 
   useEffect(() => {
-    if (login) {
+    if (create) {
       switcherHandler("login");
-      dispatch(createAccount(user));
-    } else if (error == "warning") {
-      switcherHandler("singin");
-      toast.info("You already have any account", {
-        position: "center-top",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
     }
-  }, [user]);
-
+  }, [create]);
+  useEffect(() => {}, [user]);
   return (
     <div className="auth-container">
       <div className="form">
