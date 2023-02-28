@@ -14,7 +14,7 @@ const Movies = () => {
 
   useEffect(() => {
     setList([...movies]);
-    console.log();
+   
   }, [movies]);
 
   return (

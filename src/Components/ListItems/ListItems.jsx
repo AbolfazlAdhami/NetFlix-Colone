@@ -25,7 +25,8 @@ function ListItems({ movie }) {
   // check for liked movie and change icon color and update list
 
   useEffect(() => {
-    const likedList = [...favoritList];
+    
+    const likedList = favoritList == null ? [] : [...favoritList];
     const likedMovie = likedList.findIndex((item) => item == movie.id);
     if (likedMovie != -1) {
       setLiked(true);
@@ -60,7 +61,6 @@ function ListItems({ movie }) {
         progress: undefined,
         theme: "dark",
       });
-      return;
     }
     dispatch(addMovie(movie.id));
     toast.info(`${movie.title} Add to Your List`, {

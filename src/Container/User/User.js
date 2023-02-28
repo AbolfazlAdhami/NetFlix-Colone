@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 function User() {
   const { favoritList, login } = useSelector((state) => state.user);
   const navigate = useNavigate();
-
+  const [likedList, setLikedList] = useState([]);
   const [load, setLoad] = useState(false);
   const { user } = useSelector((state) => state);
 
@@ -18,12 +18,17 @@ function User() {
     if (user.login) {
       // dispatch(updataUser(user));
     }
+    const newList = favoritList == null ? [] : [...favoritList];
+    setLikedList([...newList]);
   }, [user]);
 
   useEffect(() => {
+    const newList = favoritList == null ? [] : [...favoritList];
+    setLikedList([...newList]);
     setTimeout(() => {
       setLoad(true);
     }, 7000);
+
     return () => {
       if (!user.login) {
         navigate("/auth");
@@ -40,12 +45,12 @@ function User() {
       }
     };
   }, [0]);
-
+   
   let content = null;
-  if (favoritList.length == 0) {
+  if (likedList.length == 0) {
     content = <h3 className="not">This is NO Liked Movie in you List</h3>;
   } else {
-    content = favoritList.map((id) => {
+    content = likedList.map((id) => {
       return <Card id={id} key={id} />;
     });
   }

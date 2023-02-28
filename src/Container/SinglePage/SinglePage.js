@@ -20,7 +20,7 @@ function SinglePage() {
 
   const { id } = useParams();
   const navigate = useNavigate();
-
+  const {  login } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state);
   // Fetch data by uniqe id of movie pass by Useparams
@@ -44,7 +44,20 @@ function SinglePage() {
   }, [id]);
 
   const addList = () => {
-    dispatch(addMovie(movie.id));
+    if (!login) {
+      navigate("/auth");
+      toast.info("You should login Frist", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+      return;
+    }
     dispatch(addMovie(movie.id));
     toast.info(`${movie.title} Add to Your List`, {
       position: "top-center",

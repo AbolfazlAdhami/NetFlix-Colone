@@ -13,24 +13,22 @@ const Top = () => {
   const dispatch = useDispatch();
   const genreList = [...movies.genre];
 
-  useEffect(() => {
-    console.log(genre);
-  }, [genre]);
+
 
   const changePage = (number) => {
-    console.log(genre);
+   
     if (number != metaData.current_page) {
       let _genre = genre != "" ? genre : 1;
       if (_genre != 1) {
         const genreSelected = genreList.find((item) => item.name == _genre);
         _genre = genreSelected.id;
-        console.log(genreSelected);
+       
       }
       const data = {
         page: number,
         genre: _genre,
       };
-      console.log(data);
+      
       dispatch(getMovies(data));
     }
   };

@@ -7,9 +7,7 @@ export const singInUser = createAsyncThunk("user/Regester", async (user) => {
     if (status == 201) {
       return data;
     }
-  } catch (error) {
-    console.error(error.errors);
-  }
+  } catch (error) {}
 });
 export const createUser = createAsyncThunk("user/createAccount", async (user) => {
   const { userName } = user;
@@ -30,7 +28,7 @@ const initialState = {
   login: false, //false && true
   create: false,
   token: null,
-  favoritList: [],
+  favoritList: [10],
   userName: "",
   password: "",
   email: "",
@@ -48,8 +46,9 @@ const userSlice = createSlice({
       state.token = token;
       state.status = "login";
       state.login = true;
-      state.favoritList = action.payload.favoritList;
+      if (action.payload.favoritList == null) state.favoritList = [10];
       return state;
+
     },
     userNotFound(state, action) {
       return state;

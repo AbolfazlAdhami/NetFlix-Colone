@@ -13,7 +13,7 @@ export const primeryMovies = createAsyncThunk("movie/MovieGener", async (genre =
 export const getMovies = createAsyncThunk("movie/Movie", async (dataSend) => {
   const { genre, page } = dataSend;
   const { data, status } = await axios.get(`https://moviesapi.ir/api/v1/genres/${genre}/movies?page=${page}`);
-  console.log(data,"data was resived");
+
   if (status == 200) return data;
 });
 const initialState = {
@@ -40,7 +40,7 @@ const movieSlice = createSlice({
       })
       .addCase(getMovies.fulfilled, (state, action) => {
         const data = action.payload;
-        console.log(data.data, "Movies are Resived");
+        
         state.movies = data.data;
         state.metaData = data.metadata;
         return state;
